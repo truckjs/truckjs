@@ -42,6 +42,7 @@
         </li>
       </ul>
       <p>You're Choice : <strong><span id="response" class='attentionGrapper'></span></strong></p>
+      <p id='switchCallbacks'></p>
     </section>
   </screen>
   <script>
@@ -53,11 +54,11 @@
         value: 'get some sleep',
         checked: false,
         onCallback: function() {
-          console.log('Just turned this on!');
+          $('#switchCallbacks').text('On callback: Just turned switch one on!');
           $('#response').text(sleepSwitch.getValue().value);
         },
         offCallback: function() {
-          console.log('Turning this thing off!');
+          $('#switchCallbacks').text('Off callback: Turning switch one off!');
           $('#response').empty();
         }
       });
@@ -67,11 +68,11 @@
         value: 'take a vacation',
         checked: false,
         onCallback: function() {
-          console.log('Just turned this on!');
+          $('#switchCallbacks').text('On callback: Just turned switch two on!');
           $('#response').text(vacationSwitch.getValue().value);
         },
         offCallback: function() {
-          console.log('Turning this thing off!');
+          $('#switchCallbacks').text('Off callback: Turning switch two off!');
           $('#response').empty();
         }
       });
@@ -81,11 +82,11 @@
         value: 'have some breakfast',
         checked: false,
         onCallback: function() {
-          console.log('Just turned this on!');
+          $('#switchCallbacks').text('On callback: Just turned switch three on!');
           $('#response').text(breakfastSwitch.getValue().value);
         },
         offCallback: function() {
-          console.log('Turning this thing off!');
+          $('#switchCallbacks').text('Off callback: Turning this switch three off!');
           $('#response').empty();
         }
       });

@@ -5137,7 +5137,7 @@
       }
     },
 
-    validatePhoneNumber: function() {
+    validatePhoneNumber: function(int) {
       if (this[0].nodeName !== 'INPUT') return;
       var phone;
       var phoneNumber;

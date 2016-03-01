@@ -516,7 +516,7 @@ interface TruckStatic {
   Model(data: any, handle: string): Model;
 
   /**
-   * This method create a View object.
+   * This method creates a View object.
    *
    * options An object of key/value pairs to initialize the view.
    * @return View A View object.
@@ -681,7 +681,6 @@ interface TruckStatic {
    * @return boolean
    */
   validatePassword(input1: string, input2: string, minimum: number): boolean;
-
 
   /**
    * An array of custom validators that are added with `registerCustomValidator()`.
@@ -2282,7 +2281,7 @@ interface Model {
   * @param doNotPropogate A boolean to controller change propagation.
   * @return void
   */
-  concat(data: any[], doNotPropogate?: boolean): void;
+  concat(data: any[] | JSON, doNotPropogate?: boolean): void;
 
   /**
   * Insert data into the provided position of the model's collection. If the position provided is greater than the number of items in the collection, the data will be push onto the end of the colleciton.

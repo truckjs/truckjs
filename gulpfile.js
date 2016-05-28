@@ -1,381 +1,116 @@
-// Import modules:
 var gulp = require('gulp');
-var path = require("path");
 var pkg = require('./package.json');
+var jspm = require('gulp-jspm');
 var concat = require('gulp-concat');
-var gutils = require('gulp-util');
-var ts = require('gulp-typescript');
-var beautify = require('gulp-jsbeautifier');
-var jshint = require('gulp-jshint');
-var uglify = require('gulp-uglify');
 var cssnano = require('gulp-cssnano');
+var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
-var colors = require('colors');
-var combiner = require('stream-combiner2');
+var replace = require('replace-in-file');
+var path = require("path");
+var ncp = require('ncp').ncp;
+var noop = function() {};
+var osTypes = ['truck-android','truck-ios','truck-windows'];
 
-var filePathStart = 'src/';
-var osTypes = ['truck-android','truck-ios','truck-windows']
-
-// Files for Truck Wheel, Engine, Chassis & Body:
-var Truck_Files = [  
-  /* Truck Wheel Components */
-  'truck-wheels/wheels-comments.js',
-  'truck-wheels/domstack.js',
-  'truck-wheels/selectors.js',
-  'truck-wheels/utils.js',
-  'truck-wheels/types.js',
-  'truck-wheels/strings.js',
-  'truck-wheels/domstack.js',
-  'truck-wheels/dom.js',
-  'truck-wheels/data.js',
-  'truck-wheels/serialize.js',
-  'truck-wheels/events.js',
-
-  /* Truck Engine Components */
-  'truck-engine/engine-comments.js',
-  'truck-engine/environment.js',
-  'truck-engine/event-aliases.js',
-  'truck-engine/gestures.js',
-  'truck-engine/plugins.js',
-  'truck-engine/stack.js',
-  'truck-engine/mediator.js',
-  'truck-engine/model.js',
-  'truck-engine/view.js',
-  'truck-engine/component.js',
-  'truck-engine/screens.js',
-  'truck-engine/router.js',
-  'truck-engine/promises.js',
-  'truck-engine/fetch.js',
-  'truck-engine/formatters.js',
-  'truck-engine/validators.js',
-  'truck-engine/box.js',
-  'truck-engine/anim.js',
-  'truck-engine/oop.js',
-
-  /* Truck Body Components */
-  'truck-body/body-comments.js',
-  'truck-body/navbar.js',
-  'truck-body/setup.js',
-  'truck-body/buttons.js',
-  'truck-body/navigation.js',
-  'truck-body/tabbar.js',
-  'truck-body/slide-out.js',
-  'truck-body/editable.js',
-  'truck-body/form.js',
-  'truck-body/selectList.js',
-  'truck-body/multiSelectList.js',
-  'truck-body/switches.js',
-  'truck-body/block.js',
-  'truck-body/popup.js',
-  'truck-body/segmented.js',
-  'truck-body/range.js',
-  'truck-body/sheets.js',
-  'truck-body/paging.js',
-  'truck-body/stepper.js',
-  'truck-body/popover.js',
-  'truck-body/center.js',
-  'truck-body/activityIndicator.js'
-].map(function(file) {
-  return path.join(filePathStart, file);
+// Create Truck core DOM library:
+gulp.task('truck-full', function () {
+  gulp.src('./src/truck-full.js')
+    .pipe(sourcemaps.init())
+    .pipe(jspm({selfExecutingBundle: true, minify: false}))
+    .pipe(rename('truck.js'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist/'));
 });
 
-var Min_Build = [
-  /* Truck Wheel Components */
-  'truck-wheels/domstack.js',
-  'truck-wheels/selectors.js',
-  'truck-wheels/utils.js',
-  'truck-wheels/types.js',
-  'truck-wheels/strings.js',
-  'truck-wheels/domstack.js',
-  'truck-wheels/dom.js',
-  'truck-wheels/data.js',
-  'truck-wheels/serialize.js',
-  'truck-wheels/events.js',
-
-  /* Truck Engine Components */
-  'truck-engine/environment.js',
-  'truck-engine/event-aliases.js',
-  'truck-engine/gestures.js',
-  'truck-engine/plugins.js',
-  'truck-engine/stack.js',
-  'truck-engine/mediator.js',
-  'truck-engine/model.js',
-  'truck-engine/view.js',
-  'truck-engine/component.js',
-  'truck-engine/screens.js',
-  'truck-engine/router.js',
-
-  /* Truck Body Components */
-  'truck-body/navbar.js',
-  'truck-body/setup.js',
-  'truck-body/buttons.js',
-  'truck-body/navigation.js',
-  'truck-body/center.js',
-].map(function(file) {
-  return path.join(filePathStart, file);
+// Copy dist files to examples:
+gulp.task('examples-dist', function() {
+  ncp.limit = 16;
+  ncp('dist', 'examples/dist',noop);
+  ncp('dist', 'examples-rtl/dist',noop);
 });
 
-var Truck_Wheel_Files = [
-  /* Truck Wheel Components */
-  'truck-wheels/wheels-comments.js',
-  'truck-wheels/domstack.js',
-  'truck-wheels/selectors.js',
-  'truck-wheels/utils.js',
-  'truck-wheels/types.js',
-  'truck-wheels/strings.js',
-  'truck-wheels/domstack.js',
-  'truck-wheels/dom.js',
-  'truck-wheels/data.js',
-  'truck-wheels/serialize.js',
-  'truck-wheels/events.js',
-  'truck-engine/environment.js',
-  'truck-engine/event-aliases.js',
-  'truck-engine/gestures.js',
-  'truck-engine/plugins.js',
-  'truck-engine/mediator.js',
-  'truck-engine/promises.js',
-  'truck-engine/fetch.js',
-  'truck-engine/formatters.js',
-  'truck-engine/validators.js'
-].map(function(file) {
-  return path.join(filePathStart, file);
+// Copy styles to dist and examples:
+var cssDirectory = 'src/styles/';
+var cssFileNames = [
+  'truck-android.css',
+  'truck-ios.css',
+  'truck-windows.css'
+];
+
+var cssFiles = cssFileNames.map(function (f) {
+  return path.join(cssDirectory, f);
+});    
+
+gulp.task('styles', function() {
+  cssFiles.forEach(function(file, idx) {
+    gulp.src([file, 'src/styles/grids.css', 'src/styles/cards.css'])
+      .pipe(concat(cssFileNames[idx]))
+      .pipe(gulp.dest('dist/styles'))
+      .pipe(cssnano({safe: true}))
+      .pipe(rename(osTypes[idx] + '.min.css'))
+      .pipe(gulp.dest('dist/styles'));
+  });  
 });
 
-var Truck_Engine_Files = [
-  /* Truck Engine Components */
-  'truck-engine/engine-comments.js',
-  'truck-engine/environment.js',
-  'truck-engine/event-aliases.js',
-  'truck-engine/gestures.js',
-  'truck-engine/plugins.js',
-  'truck-engine/stack.js',
-  'truck-engine/mediator.js',
-  'truck-engine/model.js',
-  'truck-engine/view.js',
-  'truck-engine/screens.js',
-  'truck-engine/router.js',
-  'truck-engine/promises.js',
-  'truck-engine/fetch.js',
-  'truck-engine/formatters.js',
-  'truck-engine/validators.js',
-  'truck-engine/box.js'
-].map(function(file) {
-  return path.join(filePathStart, file);
+// Create Truck core DOM library minified:
+gulp.task('truck-full-minify', function () {
+  gulp.src('./src/truck-full.js')
+    .pipe(sourcemaps.init())
+    .pipe(jspm({selfExecutingBundle: true, minify: true, mangle: true}))
+    .pipe(rename('truck.min.js'))
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./dist/'));
 });
 
-var Truck_MVC_Files = [
-  /* Truck MVP Components */
-  'truck-engine/plugins.js',
-  'truck-engine/stack.js',
-  'truck-engine/mediator.js',
-  'truck-engine/model.js',
-  'truck-engine/view.js',
-  'truck-engine/box.js'
-].map(function(file) {
-  return path.join(filePathStart, file);
+// Truck core files:
+var truckBundle = [
+  'truck-open',
+  'dom-query',
+  'extend',
+  'utilities',
+  'types',
+  'strings',
+  'dom',
+  'data',
+  'serialize',
+  'params',
+  'events',
+  'event-aliases',
+  'gestures',
+  'collection-utilities',
+  'truck-close'
+].map(function (file) {
+  return './src/core/' + file + '.js'
 });
 
+///////////////////////////////
+// Create Truck core library,
+// Will be used by 'truck-full' 
+// & 'truck-full-minify' tasks,
+// so must be run first.
+///////////////////////////////
+gulp.task('truck-core', function() {
+  gulp.src('./src/core/domstack.js')
+    .pipe(gulp.dest('./src/'));
 
-// Concat, minify and output JavaScript:
-gulp.task('js', function () {
-  if (gutils.env.wheels) {
-    console.log('There\'s some Truck Wheels coming your way.');
+  gulp.src(truckBundle)
+    .pipe(concat('truck.js'))
+    .pipe(gulp.dest('./src/'));
 
-    gulp.src(Truck_Wheel_Files)
-    .pipe(concat('truck-wheels.js'))
-    .pipe(beautify({indentSize: 2, braceStyle: "collapse", spaceBeforeConditional: true}))
-    .pipe(gulp.dest('dist/'))
-    .pipe(uglify({ mangle: false }))
-    .pipe(rename("truck-wheels.min.js"))
-    .pipe(gulp.dest('dist/'));
-
-  } else if ( gutils.env.engine) {
-    console.log('There\'s a Truck Engine coming your way.');
-
-    gulp.src(Truck_Engine_Files)
-    .pipe(concat('truck-engine.js'))
-    .pipe(beautify({indentSize: 2, braceStyle: "collapse", spaceBeforeConditional: true}))
-    .pipe(gulp.dest('dist/'))
-    .pipe(uglify({ mangle: false }))
-    .pipe(rename("truck-engine.min.js"))
-    .pipe(gulp.dest('dist/'));
-
-  } else if ( gutils.env.mvc) {
-    console.log('We\'re putting together your request for Truck MVC')
-    gulp.src(Truck_MVC_Files)
-      .pipe(concat('truck-tank.js'))
-      .pipe(beautify({indentSize: 2, braceStyle: "collapse", spaceBeforeConditional: true}))
-      .pipe(gulp.dest('dist/'))
-      .pipe(uglify({ mangle: false }))
-      .pipe(rename("truck-tank.min.js"))
-      .pipe(gulp.dest('dist/'));
-
-  } else if ( gutils.env.minimum) {
-    console.log('We are building a minimum version of Truck for you.');
-    if (gutils.env.extras) {
-      var extra = gutils.env.extras
-      var extras = extra.split(' ');
-      if (extras.indexOf('promises') < 0 && (extras.indexOf('fetch') || extras.indexOf('box'))) {
-        console.log('Adding promises');
-        extras.push('promises');
-      }
-      if (extras.indexOf('validators') < 0 && extras.indexOf('form')) {
-        extras.push('validators');
-      }
-      if (extras.indexOf('block') < 0 && (extras.indexOf('activityindicator') || extras.indexOf('popup') || extras.indexOf('popover'))) {
-        extras.push('block');
-      }
-      extras.forEach(function(feature) {
-        console.log('Add feature: ' + feature);
-        switch(feature) {
-          case 'promises':
-            Min_Build.push(path.join(filePathStart, 'truck-engine', 'promises' + '.js'));
-            return;
-          case 'fetch':
-            Min_Build.push(path.join(filePathStart, 'truck-engine', 'fetch' + '.js'));
-            return;
-          case 'validators':
-            Min_Build.push(path.join(filePathStart, 'truck-engine', 'validators' + '.js'));
-            return;
-          case 'box':
-            Min_Build.push(path.join(filePathStart, 'truck-engine', 'box' + '.js'));
-            return;
-          case 'anim':
-            Min_Build.push(path.join(filePathStart, 'truck-engine', 'anim' + '.js'));
-            return;
-          case 'oop':
-            Min_Build.push(path.join(filePathStart, 'truck-engine', 'oop' + '.js'));
-            return;
-          case 'tabbar':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'tabbar' + '.js'));
-            return;
-          case 'slideout':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'slide-out' + '.js'));
-            return;
-          case 'editable':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'editable' + '.js'));
-            return;
-          case 'form':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'form' + '.js'));
-            return;
-          case 'select':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'selectList' + '.js'));
-            return;
-          case 'multiSelect':
-          case 'multiselect':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'multiSelectList' + '.js'));
-            return;
-          case 'switch':
-          case 'switches':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'switches' + '.js'));
-            return;
-          case 'popup':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'popup' + '.js'));
-            return;
-          case 'popover':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'popover' + '.js'));
-            return;
-          case 'segmented':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'segmented' + '.js'));
-            return;
-          case 'range':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'range' + '.js'));
-            return;
-          case 'sheets':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'sheets' + '.js'));
-            return;
-          case 'paging':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'paging' + '.js'));
-            return;
-          case 'stepper':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'stepper' + '.js'));
-            return;
-          case 'busy':
-          case 'activityIndicator':
-            Min_Build.push(path.join(filePathStart, 'truck-body', 'activityIndicator' + '.js'));
-            return;
-        }
-      });
-
-    }
-    gulp.src(Min_Build)
-      .pipe(concat('truck.js'))
-      .pipe(beautify({indentSize: 2, braceStyle: "collapse", spaceBeforeConditional: true}))
-      .pipe(gulp.dest('dist/'))
-      .pipe(uglify({ mangle: false }))
-      .pipe(rename("truck.min.js"))
-      .pipe(gulp.dest('dist/'));
-
-    gulp.src(Min_Build)
-      .pipe(concat('truck.js'))
-      .pipe(gulp.dest('dist/'));
-
-    // Define CSS paths:
-    typescriptDirectory = 'src/truck-chassis/';
-    var cssFiles = [
-      'truck-android.css',
-      'truck-ios.css',
-      'truck-windows.css'
-    ].map(function (f) {
-      return path.join(typescriptDirectory, f);
+  setTimeout(function() {
+    replace({
+      replace: /VERSION_NUMBER/g,
+      with: pkg.version,
+      files: [
+        "./src/truck.js"
+      ],
     });
-
-  } else {
-    // Print out Truck image:
-    console.log('');
-    console.log('     \/|||||||||\\'.red);
-    console.log('     |//-----\\\\|'.red);
-    console.log('     ||   '.red + '|'.gray + '   ||'.red);
-    console.log('     |//-----\\\\|'.red);
-    console.log('     // //|\\\\ \\\\'.red);
-    console.log('    ('.red + '[_]'.white + '+===+'.red + '[_]'.white + ')'.red);
-    console.log('    /_\\'.red + ' |||||'.white + ' /_\\'.red);
-    console.log('   (( ))'.red + '+===+'.white + '(( ))'.red);
-    console.log('    \\_/       \\_/'.red);
-    console.log('   >==>'.green + ' TRUCK '.yellow + '<==<'.green);
-    console.log(' ');
-    console.log('Hold on tight. We\'re building your TruckJS now.');
-
-    // Define CSS paths:
-    var cssDirectory = 'src/truck-chassis/';
-    var cssFiles = [
-      'truck-android.css',
-      'truck-ios.css',
-      'truck-windows.css'
-    ].map(function (f) {
-      return path.join(cssDirectory, f);
-    });
-
-    gulp.src(Truck_Files)
-      .pipe(concat('truck.js'))
-      .pipe(beautify({indentSize: 2, braceStyle: "collapse", spaceBeforeConditional: true}))
-      .pipe(gulp.dest('dist/'))
-      .pipe(uglify({ mangle: false }))
-      .pipe(rename("truck.min.js"))
-      .pipe(gulp.dest('dist/'));
-
-    gulp.src(Truck_Files)
-      .pipe(concat('truck.js'))
-      .pipe(gulp.dest('dist/'));
-
-    cssFiles.forEach(function(file, idx) {
-      gulp.src(file)
-        .pipe(gulp.dest('dist/styles'))
-        .pipe(cssnano({safe: true}))
-        .pipe(rename(osTypes[idx] + '.min.css'))
-        .pipe(gulp.dest('dist/styles'));
-    });
-  }
+  }, 150);
 });
 
-/* 
-  Four ways to build. Default will build Truck with everything.
-  Using gulp --mvc will build only the mvc parts.
-  Using gulp --wheels
-  Using gulp --tank
-  Using gulp --engine
- */
+gulp.task('typings', function() {
+  ncp.limit = 16;
+  ncp('src/typings', 'typings', noop);
+});
 
-// gulp.task('default', ['js','jshint']);
-gulp.task('default', ['js']);
-
+// Create bundle of all Truck modules and widgets:
+gulp.task('default', ['styles', 'truck-full', 'truck-full-minify', 'examples-dist', 'typings']);

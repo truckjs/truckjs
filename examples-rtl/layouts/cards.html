@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" dir='rtl'>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>TruckJS</title>
+  <link rel="stylesheet" href="../../dist/styles/truck-ios.css">
+  <script src="../../dist/truck.js"></script>
+  <style type="text/css">
+
+    /* Custom Card Styles */
+    .card-8 {
+      background: transparent url(../images/myPictures/mountain-91385_640.jpg) no-repeat;
+      background-size: 100% auto;
+    }
+    .card-8 > section {
+      background-color: rgba(255,255,255,0.70);
+    }
+
+    .card-12 > header {
+      background: transparent url(../images/myPictures/germany-70567_640.jpg) no-repeat;
+      background-size: 100% auto;
+    }
+    .card-12 h2 {
+      font-size: 38pt; 
+      font-weight: bold; 
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .card-13 {
+      background: transparent url(../images/pics/pic-01.jpg) no-repeat;
+      background-size: 100% auto;
+    }
+    .card-13 h2 {
+      font-size: 38pt; 
+      font-weight: bold; 
+      text-shadow: 2px 2px 4px #000;
+    }
+    .card-13 > section {
+      background-color: rgba(255,255,255,0.85);
+    }
+
+    /* Custom Background Color */
+    .t-bc-transparent-gray,
+    .t-card > footer.t-bc-transparent-gray,
+    button.t-bc-transparent-gray {
+      background-color: rgba(0,0,0,0.75);
+    }
+
+    /* card wrapper */
+    article {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <screen id='main' class='current'>
+    <nav>
+      <h1>List</h1>
+    </nav>
+    <section>
+      <article class='card-wrapper'>
+        <div class="card-1 t-card t-shadow-1 t-height-200">
+          <header class='t-padding-5'>
+            <h2>Card 1</h2>
+          </header>
+          <section class='t-padding-5'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-200;</p>
+            <p><strong>header:</strong> .t-padding-5;</p>
+            <p><strong>section:</strong> .t-padding-5;</p>
+            <p><strong>footer:</strong> .t-padding-5;</p>
+          </section>
+          <footer class='t-padding-5'>
+            <button>Click</button>
+          </footer>
+        </div>
+        <div class="card-2 t-card t-shadow-1 t-height-200">
+          <header class='t-padding-5 t-border-bottom'>
+            <h2>Card 2</h2>
+          </header>
+          <section class='t-padding-5'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-200;</p>
+            <p><strong>header:</strong> .t-padding-5;</p>
+            <p><strong>section:</strong> .t-padding-5;</p>
+            <p><strong>footer:</strong> .t-padding-5;</p>
+          </section>
+          <footer class='t-padding-5 t-border-top'>
+            <button>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-3 t-card t-shadow-2 t-height-200 t-bc-gray">
+          <header class='t-padding-10 t-border-bottom'>
+            <h2 class='t-c-lite'>Card 3</h2>
+          </header>
+          <section class='t-padding-10'>
+            <p class='t-c-lite'><strong>div:</strong> .t-card .t-shadow-2 .t-height-200 .t-bc-gray;</p>
+            <p class='t-c-lite'><strong>header:</strong> .t-padding-10 .t-border-bottom;</p>
+            <p class='t-c-lite'><strong>h2:</strong> .t-c-lite;</p>
+            <p class='t-c-lite'><strong>section:</strong> .t-padding-10;</p>
+            <p class='t-c-lite'><strong>p:</strong> .t-c-lite</p>
+            <p class='t-c-lite'><strong>footer:</strong> .t-padding-10 .t-border-top .t-bc-liter;</p>
+            <p class='t-c-lite'><strong>button:</strong> .t-c-lite</p>
+          </section>
+          <footer class='t-padding-10 t-border-top t-bc-liter'>
+            <button class='t-c-lite'>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-4 t-card t-shadow-3 t-height-200">
+          <header class='t-padding-20 t-border-bottom t-bc-green'>
+            <h2 class='t-c-lite'>Card 4</h2>
+          </header>
+          <section class='t-padding-20 t-bc-ivory'>
+            <p><strong>div:</strong> .t-card .t-shadow-3 .t-height-200;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-green;</p>
+            <p><strong>h2:</strong> .t-c-lite;</p>
+            <p><strong>section:</strong> .t-padding-20 .t-bc-ivory;</p>
+            <p><strong>footer:</strong> .t-padding-20 .t-border-top .t-bc-gold;</p>
+            <p><strong>button:</strong> .t-bc-green .t-c-lite .t-padding-5-10;</p>
+          </section>
+          <footer class='t-padding-20 t-border-top t-bc-gold'>
+            <button class='t-bc-green t-c-lite t-padding-5-10'>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-5 t-card t-shadow-3 t-height-300">
+          <header class='t-padding-20 t-border-bottom t-bc-dark'>
+            <h2>Card 5</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-3 .t-height-300;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-dark;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-padding-20 .t-border-top .t-bc-dark;</p>
+          </section>
+          <footer class='t-border-top t-padding-20 t-bc-dark'>
+            <button>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-6 t-card t-shadow-3 t-height-300">
+          <header class='t-padding-20 t-border-bottom t-bc-brown'>
+            <h2 class='t-c-lite'>Card 6</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-3 .t-height-300;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-brown;</p>
+            <p><strong>h2:</strong> .t-c-lite;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-bc-lite t-border-top .t-padding-20 .t-bc-yellow;</p>
+            <p><strong>button</strong> .t-bc-brown .t-c-lite .t-padding-5-20;</p>
+          </section>
+          <footer class='t-bc-lite t-border-top t-padding-20 t-bc-moss'>
+            <button class='t-bc-yellow t-c-dark t-padding-5-20'>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-7 t-card t-shadow-1 t-height-300 t-width-200">
+          <header class='t-padding-20 t-border-bottom t-bc-charcoal'>
+            <h2 class='t-c-lite'>Card 7</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-300 .t-width-200;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-charcoal;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-bc-liter .t-border-top .t-padding-20 .t-bc-gray;</p>
+            <p><strong>button:</strong> .t-c-lite;</p>
+          </section>
+          <footer class='t-bc-liter t-border-top t-padding-20 t-bc-gray'>
+            <button class='t-c-lite'>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-8 t-card t-shadow-1 t-height-300 t-width-400">
+          <header class='t-padding-20 t-border-bottom t-bc-red'>
+            <h2 class='t-c-lite'>Card 8</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-300 .t-width-400;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-red;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-bc-lite .t-border-top .t-padding-10 .t-bc-green;</p>
+            <p><strong>button</strong> .t-c-lite .t-bc-red .t-padding-5-20;</p>
+          </section>
+          <footer class='t-bc-lite t-border-top t-padding-10 t-bc-green'>
+            <button class='t-c-lite t-bc-red t-padding-5-20'>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-9 t-card t-shadow-1 t-height-300 t-width-200 t-margin-10-6">
+          <header class='t-padding-20 t-border-bottom t-bc-charcoal'>
+            <h2 class='t-c-lite'>Card 9</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-300 .t-width-200;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-charcoal;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-bc-liter .t-border-top .t-padding-20 .t-bc-gray;</p>
+            <p><strong>button:</strong> .t-c-lite;</p>
+          </section>
+        </div>
+
+        <div class="card-10 t-card t-shadow-1 t-height-300 t-width-200 t-margin-10-6">
+          <header class='t-padding-20 t-border-bottom t-bc-charcoal'>
+            <h2 class='t-c-lite'>Card 10</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-300 .t-width-200;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-charcoal;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-bc-liter .t-border-top .t-padding-20 .t-bc-gray;</p>
+            <p><strong>button:</strong> .t-c-lite;</p>
+          </section>
+          <footer class='t-bc-liter t-border-top t-padding-20 t-bc-gray'>
+            <button class='t-c-lite'>Click</button>
+          </footer>
+        </div>
+
+        <div class="card-11 t-card t-shadow-1 t-height-300 t-width-200 t-margin-10-6">
+          <header class='t-padding-20 t-border-bottom t-bc-charcoal'>
+            <h2 class='t-c-lite'>Card 11</h2>
+          </header>
+          <section class='t-padding-20'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-300 .t-width-200;</p>
+            <p><strong>header:</strong> .t-padding-20 .t-border-bottom .t-bc-charcoal;</p>
+            <p><strong>section:</strong> .t-padding-20;</p>
+            <p><strong>footer:</strong> .t-bc-liter .t-border-top .t-padding-20 .t-bc-gray;</p>
+            <p><strong>button:</strong> .t-c-lite;</p>
+          </section>
+        </div>
+
+        <div class="card-12 t-card t-shadow-1 t-height-300 t-width-600">
+          <header class='t-padding-5 t-height-100'>
+            <h2 class='t-c-lite'>Card 12</h2>
+          </header>
+          <section class='t-padding-5'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-200;</p>
+            <p><strong>header:</strong> .t-padding-5;</p>
+            <p><strong>section:</strong> .t-padding-5;</p>
+            <p><strong>footer:</strong> .t-padding-5;</p>
+          </section>
+        </div>
+
+        <div class="card-13 t-card t-shadow-1 t-height-300 t-width-600">
+          <header class='t-padding-5 t-height-100'>
+            <h2 class='t-c-lite'>Card 13</h2>
+          </header>
+          <section class='t-padding-5'>
+            <p><strong>div:</strong> .t-card .t-shadow-1 .t-height-200;</p>
+            <p><strong>header:</strong> .t-padding-5;</p>
+            <p><strong>section:</strong> .t-padding-5;</p>
+            <p><strong>footer:</strong> .t-padding-5;</p>
+          </section>
+          <footer class='t-border-top t-padding-20 t-bc-transparent-gray'>
+            <button class='t-c-lite'>Click</button>
+          </footer>
+        </div>
+      </article>
+    </section>
+  </screen>
+</body>
+</html>

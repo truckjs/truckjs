@@ -134,13 +134,13 @@
     // Sort list:
     $('#ascending').on('change', function() {
       FooModel.run(function(model, data) {
-        model.sortBy('firstName');
+        model.sortBy('firstName', 'lastName');
         peopleView.render();
       })
     });
     $('#descending').on('change', function() {
       FooModel.run(function(model, data) {
-        model.sortBy('-firstName');
+        model.sortBy('-firstName', '-lastName');
         peopleView.render();
       })
     });

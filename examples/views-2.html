@@ -9,19 +9,15 @@
   <title>Truck View</title>
   <link rel="stylesheet" href="../dist/styles/truck-ios.css">
   <script src="../dist/truck.js"></script>
-<style>
-  .list > li > img {
-    height: 70px !important;
-    width: auto;
-  }
-  ol, li {
-    padding-left: 0;
-    margin-left: 0;
-  }
-  ol {
-    margin-left: 20px;
-  }
-</style>
+  <style>
+    ol, li {
+      padding-left: 0;
+      margin-left: 0;
+    }
+    ol {
+      margin-left: 20px;
+    }
+  </style>
 
 </head>
 <body>
@@ -82,7 +78,9 @@
       <ul class='list' id="templ8">
         <script id='tempie' type='text/x-template'>
           <li>
-            <img data-src='{= somebody.image }'>
+            <aside>
+              <img width='80' data-src='{= somebody.image }'>
+            </aside>
             <div>
               <h3>{= somebody.name }</h3>
             </div>
@@ -103,6 +101,9 @@
           {{ } }}
         </script>
       </ul>
+
+      <h2>ES6 Template</h2>
+      <ul class='list' id="es6Template"></ul>
 
     </section>
 </screen>
@@ -227,7 +228,9 @@
         name: 'luminariesView',
         variable: 'person',
         template: "<li class='comp'>\
-          <img data-src='{= person.image }' alt=''>\
+          <aside>\
+            <img width='80' data-src='{= person.image }' alt=''>\
+          </aside>\
           <div>\
             <h3>\
               {= $.view.index }: {= person.firstName } {= person.lastName }\
@@ -276,14 +279,14 @@
 
       // Create a Model:
       //================
-      var BeezleModel = $.Model(beezleNames, 'beezle-model');
+      $.BeezleModel = $.Model(beezleNames, 'beezle-model');
 
       // View: 7
       // Init beezle view:
       //==================
       var beezleView = $.View({
         element: '#beezle', 
-        model: BeezleModel,
+        model: $.BeezleModel,
         name: 'beezleView'
        });
       beezleView.render();
@@ -369,6 +372,60 @@
       } else if ($('[href*=windows]')[0]) {
         console.log('You\'re using the Windows theme!');
       }
+
+
+      // ES6 Template with Partial:
+      //===========================
+      var es6TemplateList = $('#es6Template');
+
+      // Define partial:
+      var es6Partial = function(somebody) {
+        if (somebody.friends && somebody.friends.length) {
+          return `
+            <li>
+              <div class='no-flex' style='max-width: 100px;'>
+                <h3>Friends:</h3>
+              </div>
+              <div>
+                <ol>
+                  ${
+                    somebody.friends.map(function(friend) {
+                      return `<li>${friend.name}: ${friend.job}</li>`
+                    }).join('')
+                  }
+                </ol>
+              </div>
+            </li>`
+        } else {
+          // Requires empty string to prevent 
+          // output of "undefined" or "null":
+          return '';
+        }
+      };
+
+      // Main template that consumes partial:
+      var es6TemplateRender = function(peeps) {
+        if (peeps && peeps.length) {
+          return peeps.map(function(somebody) {
+            return `
+            <li>
+              <aside>
+                <img width='80' src='${ somebody.image }'>
+              </aside>
+              <div>
+                <h3>${ somebody.name }</h3>
+              </div>
+            </li>
+            ${es6Partial(somebody)}
+            `
+          });
+        };
+      };
+
+      // Render template with array and append to list:
+      es6TemplateRender(peeps).forEach(function(peep) {
+        es6TemplateList.append(peep)
+      });
 
     });
 </script>  

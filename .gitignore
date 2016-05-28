@@ -6,5 +6,7 @@
 npm-debug.log
 Thumbs.db
 node_modules
+jspm_packages
 !src/**
+truckjs-*.tgz
 src/**/.DS_Store

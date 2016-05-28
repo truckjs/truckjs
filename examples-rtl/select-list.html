@@ -18,8 +18,8 @@
     <section>
       <h2>المهام للقيام</h2>
       <ul class="list" id="selectList">
-        <li data-select="{= data.type}">
-          <h3>{= data.value }</h3>
+        <li data-select="{= data.value}">
+          <h3>{= data.label }</h3>
         </li>
       </ul>
       <p>أنت ذاهب ل: <strong><span id="response" class='attentionGrapper'></span></strong></p>
@@ -29,10 +29,10 @@
     $(function() {
       // ToDo data:
       var ToDo = [
-        {type: "أكل", value: "يذهب يأكل شيئا."},
-        {type: "غفوة", value: "أخذ غفوة."},
-        {type: "عمل", value: "الحصول على بعض العمل المنجز."},
-        {type: "لعب", value: "تلعب لعبة."}
+        {value: "أكل", label: "يذهب يأكل شيئا."},
+        {value: "غفوة", label: "أخذ غفوة."},
+        {value: "عمل", label: "الحصول على بعض العمل المنجز."},
+        {value: "لعب", label: "تلعب لعبة."}
       ];
 
       // Define and render view:

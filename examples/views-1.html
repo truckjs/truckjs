@@ -9,13 +9,6 @@
   <title>Truck View</title>
   <link rel="stylesheet" href="../dist/styles/truck-ios.css">
   <script src="../dist/truck.js"></script>
-  <style>
-    .list > li > img {
-      height: 70px !important;
-      width: auto;
-    }
-  </style>
-
 </head>
 <body>
   <screen id='main' class='current'>
@@ -42,7 +35,9 @@
 
       <ul class="list cloak" id="arrayTemplate1">
         <li class='comp'>
-          <img data-src='{= data.image }' alt="">
+          <aside>
+            <img width='80' data-src='{= data.image }' alt="">
+          </aside>
           <div>
             <h3>
               {= $.view.index }: {= data.firstName } {= data.lastName }

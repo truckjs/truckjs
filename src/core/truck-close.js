@@ -1,0 +1,5 @@
+
+  window.$ = Truck;
+
+  return $;
+})(DOMStack);

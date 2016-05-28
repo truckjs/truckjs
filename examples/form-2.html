@@ -19,12 +19,17 @@
       <h2>Custom Validator</h2>
       <ul class="list">
         <li>
-          <label for="text">Name: </label><input type="text" name='person_name' id='name'>
+          <label for="text">Name: </label>
+          <input type="text" name='person_name' id='name'>
         </li>
         <li>
-          <label for="age">Age: </label><input type="number" name='person_age' id='age'>
+          <label for="age">Age: </label>
+          <input type="number" name='person_age' id='age'>
         </li>
-        <li><button id='validateForm'>Validate</button></li>
+        <li>
+        <li>
+          <button id='validateForm'>Validate</button>
+        </li>
       </ul>
 
       <h2>Results</h2>
@@ -59,6 +64,10 @@
             callback: function() {
               alert("Please provide a proper age.")
             }
+          },
+          {
+            element: '#bongo',
+            type: 'text'
           }
         ]);
         if(!myForm.errors()) {

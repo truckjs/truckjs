@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "es6"
+  },
+  "exclude": [
+    ".babelrc",
+    "node_modules",
+    "jspm_modules",
+    "jspm_packages",
+    "src"
+  ]
+}

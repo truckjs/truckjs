@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>APP_NAME</title>
+  <link rel="stylesheet" href="./dist/styles/truck-OS_THEME.min.css">
+  <script src="./dist/app.bundle.js"></script>
+  <style>
+    .list > li > img {
+      height: 100px;
+      width: auto;
+    }
+  </style>
+</head>
+<body>
+  <screen id="main" class="current">
+    <nav id="nav1">
+      <h1>APP_NAME</h1>
+    </nav>
+    <section>
+      <h2>Luminaries</h2>
+      <ul class="list cloak" id="arrayTemplate1"></ul>
+    </section>
+  </screen>
+  
+  <screen id="detail" class="next">
+    <nav>
+      <button class="back">Back</button>
+      <h1>Detail</h1>
+    </nav>
+    <section>
+      <h2 id="chosenPerson">Chosen Person</h2>
+      <ul class="list" id="chosenPersonList"></ul>
+    </section>
+  </screen> 
+</body>
+</html>

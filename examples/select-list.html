@@ -18,8 +18,8 @@
     <section>
       <h2>Choose what to do</h2>
       <ul class="list" id="selectList">
-        <li data-select="{= data.type}">
-          <h3>{= data.value }</h3>
+        <li data-select="{= data.value}">
+          <h3>{= data.label }</h3>
         </li>
       </ul>
       <p>You are going to: <strong><span id="response" class='attentionGrapper'>{= value }</span></strong></p>
@@ -30,10 +30,10 @@
 
       // TODO data:
       var TODO = [
-        {type: "eat", value: "Go Eat Something"},
-        {type: "nap", value: "Take a nap"},
-        {type: "work", value: "Get some work done"},
-        {type: "play", value: "Play a game"}
+        {value: "eat", label: "Go Eat Something"},
+        {value: "nap", label: "Take a nap"},
+        {value: "work", label: "Get some work done"},
+        {value: "play", label: "Play a game"}
       ];
 
       // Define and render view:

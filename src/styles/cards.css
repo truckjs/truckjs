@@ -1,0 +1,355 @@
+
+/*=============*/
+/* Card Styles */
+/*=============*/
+.t-card {
+  background-color: #fafafa;
+  margin: 10px;
+  -webkit-display: flex;
+  -webkit-flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+.t-card p {
+  margin: 0 10px;
+}
+.t-card > section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.t-height-100 {
+  height: 100px !important;
+}
+.t-height-150 {
+  height: 150px !important;
+}
+.t-height-200 {
+  height: 200px !important;
+}
+.t-height-250 {
+  height: 250px !important;
+}
+.t-height-300 {
+  height: 300px !important;
+}
+.t-height-350 {
+  height: 350px !important;
+}
+.t-height-400 {
+  height: 400px !important;
+}
+.t-height-450 {
+  height: 450px !important;
+}
+.t-height-500 {
+  height: 500px !important;
+}
+.t-width-200 {
+  width: 200px !important;
+}
+.t-width-250 {
+  width: 250px !important;
+}
+.t-width-300 {
+  width: 300px !important;
+}
+.t-width-350 {
+  width: 350px !important;
+}
+.t-width-400 {
+  width: 400px !important;
+}
+.t-width-450 {
+  width: 450px !important;
+}
+.t-width-500 {
+  width: 500px !important;
+}
+.t-width-550 {
+  width: 550px !important;
+}
+.t-width-600 {
+  width: 620px !important;
+}
+.t-padding-0 {
+  padding: 0 !important;
+}
+.t-padding-5 {
+  padding: 5px;
+}
+.t-padding-10 {
+  padding: 10px;
+}
+.t-padding-15 {
+  padding: 10px 15px;
+}
+.t-padding-20 {
+  padding: 10px 20px;
+}
+.t-padding-5-10 {
+  padding: 5px 10px;
+}
+.t-padding-5-20 {
+  padding: 5px 20px;
+}
+.t-padding-10-20 {
+  padding: 10px 20px;
+}
+.t-padding-15-30 {
+  padding: 15px 30px;
+}
+.t-margin-0 {
+  margin: 0 !important;
+}
+.t-margin-10-5 {
+  margin: 10px 5px;
+}
+.t-margin-10-6 {
+  margin: 10px 6px;
+}
+.t-margin-5 {
+  margin: 5px;
+}
+.t-margin-10 {
+  margin: 10px;
+}
+.t-margin-15 {
+  margin: 10px 15px;
+}
+.t-margin-20 {
+  margin: 10px 20px;
+}
+.t-margin-5-6 {
+  margin: 5px 6px;
+}
+.t-margin-5-10 {
+  margin: 5px 10px;
+}
+.t-margin-5-15 {
+  margin: 5px 15px;
+}
+.t-margin-5-20 {
+  margin: 5px 20px;
+}
+.t-margin-10-15 {
+  margin: 10px 15px;
+}
+.t-margin-10-20 {
+  margin: 10px 20px;
+}
+.t-shadow-1 {
+  box-shadow: 1px 1px 2px 1px #ccc;
+}
+.t-shadow-2 {
+  box-shadow: 2px 2px 4px 2px #bbb;
+}
+.t-shadow-3 {
+  box-shadow: 3px 3px 6px 3px #aaa;
+}
+[dir=rtl] .t-shadow-1 {
+  box-shadow: -1px 1px 2px 1px #ccc;
+}
+[dir=rtl] .t-shadow-2 {
+  box-shadow: -2px 2px 4px 2px #bbb;
+}
+[dir=rtl] .t-shadow-3 {
+  box-shadow: -3px 3px 6px 3px #aaa;
+}
+.t-card > footer {
+  height: auto;
+  border-color: transparent;
+  background-color: transparent;
+}
+.t-border-top,
+.t-card > footer.t-border-top {
+  border-top: solid 1px rgba(0,0,0,0.15);
+}
+.t-border-bottom,
+.t-card > footer.t-border-top {
+  border-bottom: solid 1px rgba(0,0,0,0.15);
+}
+.t-bc-dark,
+.t-card > footer.t-bc-dark {
+  background-color: rgba(0,0,0,0.05);
+}
+.t-bc-darker,
+.t-card > footer.t-bc-darker {
+  background-color: rgba(0,0,0,0.1);
+}
+.t-bc-lite,
+.t-card > footer.t-bc-lite {
+  background-color: rgba(255,255,255,0.15);
+}
+.t-bc-liter,
+.t-card > footer.t-bc-liter {
+  background-color: rgba(255,255,255,0.25);
+}
+.t-bc-red,
+.t-card > footer.t-bc-red,
+button.t-bc-red {
+  background-color: #FF0000 !important;
+}
+.t-bc-blue,
+.t-card > footer.t-bc-blue,
+button.t-bc-blue {
+  background-color: #0000ff !important;
+}
+.t-bc-green,
+.t-card > footer.t-bc-green,
+button.t-bc-green {
+  background-color: #0f7002 !important;
+}
+.t-card button.t-bc-green,
+button.t-bc-green {
+  background-color: #0f7002 !important;
+}
+.t-bc-orange,
+.t-card > footer.t-bc-orange,
+button.t-bc-orange {
+  background-color: #ff8000 !important;
+}
+.t-bc-yellow,
+.t-card > footer.t-bc-yellow,
+button.t-bc-yellow {
+  background-color: #f7f701 !important;
+}
+.t-bc-pink,
+.t-card > footer.t-bc-pink,
+button.t-bc-pink {
+  background-color: #ff00ff !important;
+}
+.t-bc-tan,
+.t-card > footer.t-bc-tan,
+button.t-bc-tan {
+  background-color: #c7a679 !important;
+}
+.t-bc-lime,
+.t-card > footer.t-bc-lime,
+button.t-bc-lime {
+  background-color: #22ff08 !important;
+}
+.t-bc-purple,
+.t-card > footer.t-bc-purple,
+button.t-bc-purple {
+  background-color: #6c006c !important;
+}
+.t-bc-lavender,
+.t-card > footer.t-bc-lavender,
+button.t-bc-lavender {
+  background-color: #e0dff8 !important;
+}
+.t-bc-gold,
+.t-card > footer.t-bc-gold,
+button.t-bc-gold {
+  background-color: #fed009 !important;
+}
+.t-bc-sky-blue,
+.t-card > footer.t-bc-sky-blue,
+button.t-bc-sky-blue {
+  background-color: #66ccff !important;
+}
+.t-bc-black,
+.t-card > footer.t-bc-black,
+button.t-bc-black {
+  background-color: #000000 !important;
+}
+.t-bc-white,
+.t-card > footer.t-bc-white,
+button.t-bc-white {
+  background-color: #ffffff !important;
+}
+.t-bc-ivory,
+.t-card > footer.t-bc-ivory,
+button.t-bc-ivory {
+  background-color: #ffffed !important;
+}
+.t-bc-gray,
+.t-card > footer.t-bc-gray,
+button.t-bc-gray {
+  background-color: #6d6d6d !important;
+}
+.t-bc-charcoal,
+.t-card > footer.t-bc-charcoal,
+button.t-bc-charcoal {
+  background-color: #333333 !important;
+}
+.t-bc-brown,
+.t-card > footer.t-bc-brown,
+button.t-bc-brown {
+  background-color: #942f01 !important;
+}
+.t-bc-teal,
+.t-card > footer.t-bc-teal,
+button.t-bc-teal {
+  background-color: #0e6e6c !important;
+}
+.t-bc-violet,
+.t-card > footer.t-bc-violet,
+button.t-bc-violet {
+  background-color: #9a42ea !important;
+}
+.t-bc-olive,
+.t-card > footer.t-bc-olive,
+button.t-bc-olive {
+  background-color: #6d6f03 !important;
+}
+.t-bc-moss,
+.t-card > footer.t-bc-moss,
+button.t-bc-moss {
+  background-color: #40652f !important;
+}
+.t-c-lite,
+button.t-c-lite  {
+  color: #fafafa !important;
+}
+.t-c-dark,
+button.t-c-dark {
+  color: #666666 !important;
+}
+
+@media only screen and (min-width: 737px) {
+  .t-card {
+    width: 300px;
+    float: left;
+  }
+  [dir=rtl] .t-card {
+    float: right;
+  }
+}
+@media only screen and (min-width: 300px) and (max-width: 500px) {
+  .t-card {
+    width: 300px;
+    margin: 20px auto;
+  }
+  .t-width-350,
+  .t-width-400,
+  .t-width-450,
+  .t-width-500,
+  .t-width-550 ,
+  .t-width-600 {
+    width: 300px !important;
+    float: none;
+  }
+}
+@media only screen and (min-width: 500px) and (max-width: 666px) {
+  .t-card {
+    width: 300px;
+    margin: 20px auto;
+    float: none;
+  }
+  .t-width-500,
+  .t-width-550 ,
+  .t-width-600 {
+    width: 400px !important;
+    float: none;
+  }
+}
+@media only screen and (min-width: 667px) {
+  .t-card {
+    width: 300px;
+    float: left;
+  }
+  [dir=rtl] .t-card {
+    float: right;
+  }
+}

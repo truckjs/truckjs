@@ -12,7 +12,9 @@ Truck provides you with tools for creating amazing Web apps for mobile devices. 
 
 Truck is built with ES6 features and uses Babel to transpile it to ES5 for current browsers. The number one reason we chose to use ES6 was so we could use ES6 modules. Using these with Babel and JSPM allows you to create a final build with just the parts you need. There is simply no reason to load all modules and widgets into your project if you are only going to use a few.
 
-To learn more about TruckJS, please visit the [TruckJS website](http://rbiggs.github.io).
+
+
+##To learn more about TruckJS, please visit the [TruckJS website](http://rbiggs.github.io).
 
 ##Getting Started
 

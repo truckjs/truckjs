@@ -2,11 +2,17 @@
 
 ##An MVC Framework for Mobile Web Apps
 
+###We're pleased to announce that all the development efforts that we put into TruckJS have now been incorporated directly into ChocolateChip-UI. Originally we thought this would be too difficult, so we created a completely separate framework.
+
+####It was great to being able to break out of the mold and try new approaches to solve tough problems in app development. We came up with some cool features for TruckJS. In time we realized that we could bring all those features over to ChocolateChip-UI. On doing so, we simplified some of TruckJS's approaches. We really like out it turned out. If you liked what you found in TruckJS, you're really going to like the new versioni of ChocolateChip-UI.
+
+####Please visit [ChocolateChip-UI](https://chocolatechip-ui.github.io) to learn more about how you can build the best apps with great features.
+
 Truck provides you with tools for creating amazing Web apps for mobile devices. Using themes, it gives you the native look and feel of Android, iOS and Windows Phone from one code base.
 
 Truck is built with ES6 features and uses Babel to transpile it to ES5 for current browsers. The number one reason we chose to use ES6 was so we could use ES6 modules. Using these with Babel and JSPM allows you to create a final build with just the parts you need. There is simply no reason to load all modules and widgets into your project if you are only going to use a few.
 
-To learn more about TruckJS, please visit the [TruckJS website](http://truckjs.github.io).
+To learn more about TruckJS, please visit the [TruckJS website](http://rbiggs.github.io).
 
 ##Getting Started
 
